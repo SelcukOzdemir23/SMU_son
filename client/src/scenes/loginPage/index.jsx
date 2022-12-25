@@ -1,5 +1,5 @@
 import { Box, Typography, useTheme, useMediaQuery } from "@mui/material";
-import { width } from "@mui/system";
+//import { width } from "@mui/system";
 import Form from "./Form";
 
 const LoginPage = () => {
@@ -27,7 +27,7 @@ const LoginPage = () => {
         backgroundColor={theme.palette.background.alt}
       >
         <Typography fontWeight="500" variant="h5" sx={{ mb: "1.5rem" }}>
-          Merhaba
+            1001 Filme Hoşgeldiniz
         </Typography>
         <Form />
       </Box>
