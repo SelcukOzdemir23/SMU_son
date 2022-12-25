@@ -144,6 +144,8 @@ const UserWidget = ({ userId, picturePath }) => {
           <EditOutlined sx={{ color: main }} />
         </FlexBetween>
       </Box>
+            <Divider />
+      
     </WidgetWrapper>
   );
 };

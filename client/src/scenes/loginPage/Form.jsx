@@ -16,7 +16,9 @@ import { useDispatch } from "react-redux";
 import { setLogin } from "state";
 import Dropzone from "react-dropzone";
 import FlexBetween from "components/FlexBetween";
+// import { toast } from 'react-toastify'
 
+ 
 const registerSchema = yup.object().shape({
   firstName: yup.string().required("Boş bırakılamaz"),
   lastName: yup.string().required("Boş bırakılamaz"),
@@ -94,6 +96,7 @@ const Form = () => {
           token: loggedIn.token,
         })
       );
+      
       navigate("/home");
     }
   };
