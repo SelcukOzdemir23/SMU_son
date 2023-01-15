@@ -7,6 +7,8 @@ import {
   MicOutlined,
   MoreHorizOutlined,
 } from "@mui/icons-material";
+import TextField from '@mui/material/TextField';
+import Autocomplete from '@mui/material/Autocomplete';
 import {
   Box,
   Divider,
@@ -24,12 +26,22 @@ import WidgetWrapper from "components/WidgetWrapper";
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { setPosts } from "state";
-
+import { style } from "@mui/system";
+const top100Films = [
+  { label: 'Aşk'},
+  { label: 'Hayat'},
+  { label: 'Dram'},
+  { label: 'Gerçek'},
+  { label: 'Alıntı'},
+  { label: "Bilgi"},
+  { label: 'Kurtlar Vadisi'},
+];
 const MyPostWidget = ({ picturePath }) => {
   const dispatch = useDispatch();
   const [isImage, setIsImage] = useState(false);
   const [image, setImage] = useState(null);
   const [post, setPost] = useState("");
+  const [postt, setPostt] = useState("#");
   const { palette } = useTheme();
   const { _id } = useSelector((state) => state.user);
   const token = useSelector((state) => state.token);
@@ -41,6 +53,8 @@ const MyPostWidget = ({ picturePath }) => {
     const formData = new FormData();
     formData.append("userId", _id);
     formData.append("description", post);
+    formData.append("tag", postt);
+
     if (image) {
       formData.append("picture", image);
       formData.append("picturePath", image.name);
@@ -55,6 +69,7 @@ const MyPostWidget = ({ picturePath }) => {
     dispatch(setPosts({ posts }));
     setImage(null);
     setPost("");
+    setPostt("#");
   };
 
   return (
@@ -134,19 +149,36 @@ const MyPostWidget = ({ picturePath }) => {
         {isNonMobileScreens ? (
           <>
             <FlexBetween gap="0.25rem">
-              <GifBoxOutlined sx={{ color: mediumMain }} />
-              <Typography color={mediumMain}>Gif</Typography>
+              
+              <Autocomplete
+                disablePortal 
+                id="combo-box-demo"
+                options={top100Films}
+                sx={{ width: 200 }}
+                renderInput={(params) => <TextField {...params} label="Etiket" />}
+                
+/>    
+                <Typography
+            color={mediumMain}
+            sx={{ "&:hover": { cursor: "pointer", color: medium } }}
+          >
+            
+          </Typography>
             </FlexBetween>
 
-            <FlexBetween gap="0.25rem">
-              <AttachFileOutlined sx={{ color: mediumMain }} />
-              <Typography color={mediumMain}>Ek</Typography>
-            </FlexBetween>
-
-            <FlexBetween gap="0.25rem">
-              <MicOutlined sx={{ color: mediumMain }} />
-              <Typography color={mediumMain}>Ses</Typography>
-            </FlexBetween>
+            <InputBase
+              placeholder="           Film Seç"
+              onChange={(e) => setPostt(e.target.value)}
+              value={postt}
+              
+          sx={{
+            width: "30%",
+            backgroundColor: palette.neutral.light,
+            borderRadius: "2rem",
+            padding: "1rem 2rem",
+            
+          }}
+        />
           </>
         ) : (
           <FlexBetween gap="0.25rem">

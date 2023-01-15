@@ -22,6 +22,7 @@ const PostWidget = ({
   userPicturePath,
   likes,
   comments,
+  tag,
 }) => {
   const [isComments, setIsComments] = useState(false);
   const dispatch = useDispatch();
@@ -29,7 +30,7 @@ const PostWidget = ({
   const loggedInUserId = useSelector((state) => state.user._id);
   const isLiked = Boolean(likes[loggedInUserId]);
   const likeCount = Object.keys(likes).length;
-
+  // const tag = Object.keys(tag).stringify()
   const { palette } = useTheme();
   const main = palette.neutral.main;
   const primary = palette.primary.main;
@@ -55,6 +56,9 @@ const PostWidget = ({
         subtitle={location}
         userPicturePath={userPicturePath}
       />
+      <Typography color={main} sx={{ mt: "1rem" }}>
+        {tag}
+      </Typography>
       <Typography color={main} sx={{ mt: "1rem" }}>
         {description}
       </Typography>

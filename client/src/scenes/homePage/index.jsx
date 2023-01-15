@@ -7,6 +7,7 @@ import PostsWidget from "scenes/widgets/PostsWidget";
 import AdvertWidget from "scenes/widgets/AdvertWidget";
 import FriendListWidget from "scenes/widgets/FriendListWidget";
 import PopularFilmsCard from "scenes/widgets/PopularFilmsCard"
+//import ChatGPT from "scenes/widgets/ChatGPT"
 const HomePage = () => {
   const isNonMobileScreens = useMediaQuery("(min-width:1000px)");
   const { _id, picturePath } = useSelector((state) => state.user);
@@ -38,15 +39,33 @@ const HomePage = () => {
         >
           <MyPostWidget picturePath={picturePath} />
           <PostsWidget userId={_id} />
+          
         </Box>
         {isNonMobileScreens && (
           <Box flexBasis="26%">
             <AdvertWidget />
-            <Box m="2rem 0" />
+            
+            <Box m="2rem 0" style={{gap: "10px"}}/>
             <FriendListWidget userId={_id} />
+            <Box m="2rem 0">
+            {/* <ChatGPT/> */}
           </Box>
+            
+          </Box>
+          
+          
+          
         )}
+        
+      <Box m="2rem 0">
+            
+            
+            
+          </Box>
+        
       </Box>
+
+      
     </Box>
   );
 };

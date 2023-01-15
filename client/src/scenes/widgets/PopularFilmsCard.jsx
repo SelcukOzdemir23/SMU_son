@@ -12,7 +12,24 @@ const PopularFilmsCard = () => {
     
   }, []);
 
+  async function getTrendingMovieData2(type) {
+    try {
+      const apiKey = '5f553c96c5d14cacf3dce0a3a71b38ea';
+      let resp = await axios.get(`https://api.themoviedb.org/3/movie/${type}?api_key=${apiKey}&language=en-US&page=1`); 
+      
+      console.log(21, resp.data.results);
+      
+      setMovieData(resp.data.results);
+      
 
+    } catch (e) {
+
+
+    } finally {
+
+    }
+
+  }
   async function getTrendingMovieData(type) {
     try {
       const apiKey = '5f553c96c5d14cacf3dce0a3a71b38ea';
@@ -41,12 +58,15 @@ const PopularFilmsCard = () => {
               Popüler Film ve Diziler
             </Typography>
              <Divider />
-            <Box m={2} ml={6}>
+            <Box m={2} ml={6} display={"flex"} marginRight={"20px"} alignItems={"center"} >
               <Button color="secondary" onClick={()=> getTrendingMovieData("movie")} style={{padding:15,gap:10}}>
-                Trend Filimler
+                TREND FİLMLER
               </Button>
               <Button color="secondary" onClick={() => getTrendingMovieData("tv")} style={{padding:15,gap:10}}>
-                Trend Diziler
+                TREND DİZİLER
+              </Button>
+              <Button color="secondary" onClick={() => getTrendingMovieData2("top_rated")} style={{padding:15,gap:10}}>
+                EN İYİ FİLMLER
               </Button>
 
               
@@ -60,8 +80,7 @@ const PopularFilmsCard = () => {
                 {movieData.map((item) =>
             
             <div>
-              
-              
+  
               
               <img src={`https://image.tmdb.org/t/p/w300/${item.poster_path}`} alt="resim"/>
               <div className="movie_name">
